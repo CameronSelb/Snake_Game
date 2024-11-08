@@ -23,10 +23,12 @@ window = tkinter.Tk()
 window.title("Snake")
 window.resizable(False, False)
 
+
 #this designs a canvas and adds it to the window, borderwidth = 0 and highlightthickness = 0 gets rid of the border
 canvas = tkinter.Canvas(window, bg= "black", width= WINDOW_WIDTH, height= WINDOW_HEIGHT, borderwidth= 0, highlightthickness= 0)
 canvas.pack()
 window.update()
+
 
 #center the window
 window_width = window.winfo_width()
@@ -38,6 +40,7 @@ window_x = int((screen_width/2) - (window_width/2))
 window_y = int((screen_height/2) - (window_height/2))
 
 window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
+
 
 #initialize the game
 snake = Tile(5*TILE_SIZE, 5*TILE_SIZE) #Single tile, snake head
@@ -51,10 +54,12 @@ game_over = False
 score = 0
 time = 200
 
+
 rot_snake_photo = Image.open("Images/Head.png")
 snake_photo = ImageTk.PhotoImage(rot_snake_photo)
 apple_photo = tkinter.PhotoImage(file= "Images/Apple.png")
 bomb_photo = tkinter.PhotoImage(file= "Images/Bomb.png")
+
 
 def key_input(e): #e = event
     global velocityX, velocityY, game_over, score, snake_body, food, snake, snake_photo, time, food_amount, bombs
@@ -98,10 +103,12 @@ def key_input(e): #e = event
         rotated_photo = rot_snake_photo.rotate(90)
         snake_photo = ImageTk.PhotoImage(rotated_photo)
 
+
 def random_coords():
     x = random.randint(0, COLS-1) * TILE_SIZE
     y = random.randint(0, ROWS-1) * TILE_SIZE
     return(x, y)
+
 
 def bomb_activate(score):
 
@@ -126,6 +133,7 @@ def bomb_activate(score):
                         break    
             bomb.x = x
             bomb.y = y
+
 
 def score_change():
     global score, time, food_amount, bombs
@@ -164,6 +172,7 @@ def collision(f):
     
     score_change()
     return x, y        
+
 
 def move():
     global snake, food, snake_body, game_over, food_amount, snake_photo
